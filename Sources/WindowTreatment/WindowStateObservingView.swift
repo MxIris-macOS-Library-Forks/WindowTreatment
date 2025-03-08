@@ -3,8 +3,7 @@ import SwiftUI
 
 @available(macOS 10.15, *)
 public struct WindowStateKey: EnvironmentKey {
-    public typealias Value = WindowStateObserver.State
-    public static var defaultValue: Value = .init(window: nil)
+    public static let defaultValue: WindowStateObserver.State = .init()
 }
 
 @available(macOS 10.15, *)
@@ -19,7 +18,7 @@ public extension EnvironmentValues {
 struct WindowStateObservingView<Content: View>: NSViewRepresentable {
     private typealias WindowState = WindowStateObserver.State
 
-    @State private var windowState: WindowState = .init(window: nil)
+    @State private var windowState: WindowState = .init()
     private let content: Content
 
     init(content: () -> Content) {

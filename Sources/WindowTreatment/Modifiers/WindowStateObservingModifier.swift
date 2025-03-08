@@ -1,6 +1,7 @@
 import SwiftUI
 
 @available(macOS 11.0, *)
+@MainActor
 final class WindowObserverModel: ObservableObject {
 	private let observer = WindowStateObserver()
 	@Published var windowState = WindowStateObserver.State(window: nil)
@@ -30,6 +31,7 @@ extension View {
 	/// Puts the parent window's `WindowStateObserver.State` into the environment.
 	///
 	/// This makes the state available in child views. It is accessible via the `.windowState` environment key.
+	@MainActor
 	public func observeWindowState() -> some View {
 		modifier(WindowStateObservingModifier())
 	}
